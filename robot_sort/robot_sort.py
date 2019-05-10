@@ -136,7 +136,7 @@ class SortingRobot:
                 if self.compare_item() is None or self.compare_item() == 1:
                     self.swap_item()
                     self.set_light_on()
-        return self._list       
+        return     
 
 
 
