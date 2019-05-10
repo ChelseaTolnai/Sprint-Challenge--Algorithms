@@ -97,6 +97,20 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
+        """
+        # Set light "ON"
+        # While light is "ON"
+            # Set light "OFF"
+            # While can move left
+                # Move left
+            # Swap list[0] (ie. pick up first item)
+            # While can move right 
+                # Move right
+                # Compare items
+                    # If return 1 (ie. item holding is greater than item in front)
+                        # Swap items
+                        # Set light "ON"
+        """
         pass
 
 
