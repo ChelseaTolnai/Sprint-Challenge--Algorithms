@@ -102,9 +102,6 @@ class SortingRobot:
         # While light is "ON"
             # Set light "OFF"
             # Swap list[0] (ie. pick up first item)
-            # If at last item and holding nothing
-                # Put the last sorted item down
-                # And return sorted list
             # While can move left
                 # Move left
                 # Until you hit the position where there are no items 
@@ -112,19 +109,20 @@ class SortingRobot:
                     # Drop the sorted item into the none position and stop moving left
             # While can move right 
                 # Move right
+                # If at last item and holding nothing
+                    # Turn light "OFF"
+                    # Break comparing as all items sorted
                 # Compare items
                     # If return 1 (ie. item holding is greater than item in front)
                         # Swap items
                         # Set light "ON"
+        # When light off return sorted list
         """
         self.set_light_on()
         while self.light_is_on():
             self.set_light_off()
             if self.can_move_left() is False:
                 self.swap_item()
-            if self.can_move_right() is False and self.compare_item() is None:
-                self.swap_item()
-                return self._list
             while self.can_move_left():
                 self.move_left()
                 if self.compare_item() is None:
@@ -132,10 +130,13 @@ class SortingRobot:
                     break                
             while self.can_move_right():
                 self.move_right()
+                if self.can_move_right() is False and self.compare_item() is None:
+                    self.set_light_off()
+                    break
                 if self.compare_item() is None or self.compare_item() == 1:
                     self.swap_item()
                     self.set_light_on()
-                
+        return self._list       
 
 
 
